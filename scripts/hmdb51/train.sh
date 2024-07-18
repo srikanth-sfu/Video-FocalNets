@@ -1,0 +1,1 @@
+python -m torch.distributed.launch --nproc_per_node 1 main.py --cfg configs/hmdb51/video-focalnet_base.yaml --resume 'ckpt/kinetics400/video-focalnet_base_kinetics400.pth' --output ckpt/hmdb51/ --opts DATA.TRAIN_FILE data/hmdb51/train.csv DATA.VAL_FILE data/hmdb51/val.csv

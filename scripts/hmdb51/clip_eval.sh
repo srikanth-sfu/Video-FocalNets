@@ -1,0 +1,1 @@
+python -m torch.distributed.launch --nproc_per_node 2 main_clip.py  --eval --cfg configs/hmdb51/clip_base.yaml --resume 'test' --opts  DATA.NUM_FRAMES 8 DATA.BATCH_SIZE 8 TEST.NUM_CLIP 1 TEST.NUM_CROP 1 DATA.TRAIN_FILE data/hmdb51/train.csv DATA.VAL_FILE data/hmdb51/val.csv 
