@@ -1,15 +1,22 @@
 import torch
 import torch.nn as nn
-from timm.models.vision_transformer import VisionTransformer, vit_base_patch16_224
+from timm.models.vision_transformer import VisionTransformer, vit_base_patch16_224, _create_vision_transformer
 
 class ViTVideo(nn.Module):
-    def __init__(self, pretrained_vit: VisionTransformer, num_frames: int, num_classes: int):
+    def __init__(self, pretrained_vit: VisionTransformer, num_frames: int, num_classes: int, pretrained: bool):
         super(ViTVideo, self).__init__()
         self.patch_embedding = pretrained_vit.patch_embed
         self.cls_token = pretrained_vit.cls_token
         self.positional_encoding = pretrained_vit.pos_embed
-        self.transformer = pretrained_vit.blocks
-        self.norm = pretrained_vit.norm
+        self.pretrained = pretrained
+        if pretrained:
+            self.transformer = pretrained_vit.blocks
+            self.norm = pretrained_vit.norm
+        else:
+            model_args = dict(patch_size=16*num_frames, embed_dim=768, depth=12, num_heads=12)
+            model = _create_vision_transformer('vit_base_patch16_224', pretrained=False, **dict(model_args))
+            self.transformer = model.blocks
+            self.norm = model.norm
         self.head = nn.Linear(pretrained_vit.embed_dim, num_classes)
 
         # Adjust positional encoding to handle multiple frames
@@ -31,6 +38,8 @@ class ViTVideo(nn.Module):
         cls_tokens = self.cls_token.expand(B * T, -1, -1)
         x = torch.cat((cls_tokens, x), dim=1)
         x += self.positional_encoding
+        if not self.pretrained:
+            x = x.view(B,-1,x.size(-1))
         x = self.transformer(x)
         
         x = self.norm(x)
@@ -43,9 +52,9 @@ class ViTVideo(nn.Module):
         
         return x
 
-def create_model(num_classes, num_frames=8):
+def create_model(num_classes, num_frames=8, pretrained=True):
     pretrained_vit = vit_base_patch16_224(pretrained=True)
-    model = ViTVideo(pretrained_vit, num_frames, num_classes)
+    model = ViTVideo(pretrained_vit, num_frames, num_classes, pretrained)
     
     return model
 
