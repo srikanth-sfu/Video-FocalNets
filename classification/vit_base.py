@@ -40,13 +40,11 @@ class ViTVideo(nn.Module):
         x += self.positional_encoding
         if not self.pretrained:
             x = x.view(B,-1,x.size(-1))
+
         x = self.transformer(x)
-        
         x = self.norm(x)
-        cls_tokens_final = x[:, 0]
-        
+        cls_tokens_final = x.view(B*T, -1, x.size(-1))[:, 0]
         # Mean pooling of the final layer patch representations
-        print(cls_tokens_final.size(), x.size())
         cls_tokens_final = cls_tokens_final.view(B, T, -1).mean(dim=1)
         
         x = self.head(cls_tokens_final)
