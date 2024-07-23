@@ -1,6 +1,7 @@
 from timm.models import create_model
 from . import videofocalnet
 from transformers import CLIPModel, CLIPProcessor
+from . import vit_base
 
 def build_model(config):
     model_type = config.MODEL.TYPE
@@ -24,6 +25,11 @@ def build_model(config):
             num_frames=config.DATA.NUM_FRAMES,
             tubelet_size=config.MODEL.TUBELET_SIZE
         )                      
+    elif "vit_base" in model_type:
+        model = vit_base.create_model(
+            num_frames=config.DATA.NUM_FRAMES,
+            num_classes=config.MODEL.NUM_CLASSES
+        )
     elif "vit" in model_type:
         model = create_model(
             model_type,
