@@ -29,7 +29,7 @@ def build_model(config):
         model = vit_base.create_model(
             num_frames=config.DATA.NUM_FRAMES,
             num_classes=config.MODEL.NUM_CLASSES,
-            pretrained=config.MODEL.pretrained
+            pretrained=config.MODEL.PRETRAINED
 
         )
     elif "vit" in model_type:
