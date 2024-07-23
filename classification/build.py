@@ -36,6 +36,7 @@ def build_model(config):
             pretrained=is_pretrained,
             img_size=config.DATA.IMG_SIZE,
             num_classes=config.MODEL.NUM_CLASSES,
+            pretrained=config.MODEL.pretrained
         )
     elif "resnet" in model_type:
         model = create_model(
