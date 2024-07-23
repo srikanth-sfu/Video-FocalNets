@@ -28,15 +28,16 @@ def build_model(config):
     elif "vit_base" in model_type:
         model = vit_base.create_model(
             num_frames=config.DATA.NUM_FRAMES,
-            num_classes=config.MODEL.NUM_CLASSES
+            num_classes=config.MODEL.NUM_CLASSES,
+            pretrained=config.MODEL.pretrained
+
         )
     elif "vit" in model_type:
         model = create_model(
             model_type,
             pretrained=is_pretrained,
             img_size=config.DATA.IMG_SIZE,
-            num_classes=config.MODEL.NUM_CLASSES,
-            pretrained=config.MODEL.PRETRAINED
+            num_classes=config.MODEL.NUM_CLASSES
         )
     elif "resnet" in model_type:
         model = create_model(
