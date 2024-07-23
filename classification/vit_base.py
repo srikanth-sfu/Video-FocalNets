@@ -60,12 +60,13 @@ def create_model(num_classes, num_frames=8, pretrained=True):
 
 ## Load pretrained ViT model
 #pretrained_vit = vit_base_patch16_224(pretrained=True)
-#num_frames = 8
-#num_classes = 1000
-#model = ViTVideo(pretrained_vit, num_frames, num_classes)
-#
-## Example usage
-#dummy_input = torch.randn(2, num_frames, 3, 224, 224)  # (batch_size, num_frames, channels, height, width)
-#output = model(dummy_input)
-#print(output.shape)  # Should be (batch_size, num_classes)
+if __name__ == "__main__":
+    num_frames = 8
+    num_classes = 51
+    model = create_model(num_classes=num_frames, num_frames=num_frames, pretrained=False)
+    
+    # Example usage
+    dummy_input = torch.randn(2, num_frames, 3, 224, 224)  # (batch_size, num_frames, channels, height, width)
+    output = model(dummy_input)
+    print(output.shape)  # Should be (batch_size, num_classes)
 
