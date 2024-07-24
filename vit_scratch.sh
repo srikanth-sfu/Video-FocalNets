@@ -18,7 +18,6 @@ source activate focal
 echo $?
 bash scripts/hmdb51/vit_base.sh
 echo "Crossed this path"
-
 echo $?
 if [ $? -eq 124 ]; then
   echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
