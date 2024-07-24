@@ -17,13 +17,3 @@ source activate focal
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
 echo $?
 bash scripts/hmdb51/vit_base.sh
-echo "Crossed this path"
-echo $?
-if [ $? -eq 124 ]; then
-  echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
-  # Call the script itself again with the same configuration
-  sbatch /home/smuralid/scratch/Video-FocalNets/vit_scratch.sh 
-else
-  echo "The script finished before timing out."
-  # Exit or perform any other necessary cleanup
-fi
