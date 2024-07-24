@@ -16,4 +16,5 @@ source activate focal
 # bash scripts/hmdb51/video-focalnet_base.sh
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
 echo $?
+echo "Crossed path"
 bash scripts/hmdb51/vit_base.sh
