@@ -13,11 +13,12 @@
 # Environment setup
 source /home/smuralid/anaconda3/bin/activate
 source activate focal
-#bash scripts/hmdb51/video-focalnet_base.sh
+# bash scripts/hmdb51/video-focalnet_base.sh
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
 echo $?
-echo "Crossed this path"
 bash scripts/hmdb51/vit_base.sh
+echo "Crossed this path"
+
 echo $?
 if [ $? -eq 124 ]; then
   echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
