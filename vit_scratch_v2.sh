@@ -15,10 +15,10 @@ source /home/smuralid/anaconda3/bin/activate
 source activate focal
 # bash scripts/hmdb51/video-focalnet_base.sh
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
-echo $?
-echo "Crossed path"
 python -m torch.distributed.launch --nproc_per_node 4 main.py \
 --cfg configs/hmdb51/vit_base.yaml
+echo $?
+echo "Crossed path"
 if [ $? -eq 124 ]; then
   echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
   # Call the script itself again with the same configuration
