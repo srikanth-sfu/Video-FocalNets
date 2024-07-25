@@ -7,13 +7,22 @@
 #SBATCH --time=0-00:01
 #SBATCH -o /home/smuralid/error/slurm-%j.out  # Write the log on scratch
 #SBATCH -e /home/smuralid/error/slurm-%j.err
+#SBATCH --signal=B:USR1@60  # Send USR1 signal 60 seconds before time limit
 
 # Directories
 
 # Environment setup
 source /home/smuralid/anaconda3/bin/activate
 source activate focal
-# bash scripts/hmdb51/video-focalnet_base.sh
+
+handle_timeout() {
+  echo "The script timed out after the time limit. Restarting..."
+  sbatch /home/smuralid/scratch/Video-FocalNets/vit_scratch_v2.sh 
+  exit 0
+}
+
+trap 'handle_timeout' USR1
+
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
 python -m torch.distributed.launch --nproc_per_node 4 main.py \
 --cfg configs/hmdb51/vit_base.yaml
