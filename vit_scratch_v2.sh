@@ -7,7 +7,7 @@
 #SBATCH --time=0-00:01
 #SBATCH -o /home/smuralid/error/slurm-%j.out  # Write the log on scratch
 #SBATCH -e /home/smuralid/error/slurm-%j.err
-#SBATCH --signal=B:USR1@60  # Send USR1 signal 60 seconds before time limit
+#SBATCH --signal=B:USR1@30  # Send USR1 signal 30 seconds before time limit
 
 # Directories
 
