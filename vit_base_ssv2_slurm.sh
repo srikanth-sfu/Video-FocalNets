@@ -21,7 +21,7 @@ timeout 179m bash scripts/ssv2/vit_base.sh
 if [ $? -eq 124 ]; then
   echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
   # Call the script itself again with the same configuration
-  sbatch /home/smuralid/scratch/Video-FocalNets/vit_base_slurm.sh
+  sbatch /home/smuralid/scratch/Video-FocalNets/vit_base_ssv2_slurm.sh
   # scontrol requeue $SLURM_JOB_ID
 else
   echo "The script finished before timing out."
