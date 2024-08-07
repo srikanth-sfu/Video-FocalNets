@@ -3,7 +3,7 @@
 #SBATCH --account=rrg-mpederso
 #SBATCH --mem-per-cpu=64G 
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:v100l:4
+#SBATCH --gres=gpu:p100l:4
 #SBATCH --time=0-03:00
 #SBATCH --open-mode=append
 #SBATCH -o /home/smuralid/error/slurm-%j.out  # Write the log on scratch
