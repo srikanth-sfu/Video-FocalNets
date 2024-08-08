@@ -14,6 +14,9 @@
 # Environment setup
 source /home/smuralid/anaconda3/bin/activate
 source activate focal
+export NCCL_BLOCKING_WAIT=1
+echo "r$SLURM_NODEID master: $MASTER_ADDR"
+echo "r$SLURM_NODEID Launching python script"
 
 # Check if the timeout command's exit status is 124, which indicates a timeout occurred
 timeout 179m bash scripts/ssv2/vit_base.sh 
