@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=vit_train
-#SBATCH --account=rrg-mpederso
+#SBATCH --account=def-mpederso
 #SBATCH --mem-per-cpu=64G 
 #SBATCH --nodes=2
 ##SBATCH --gres=gpu:p100l:4
