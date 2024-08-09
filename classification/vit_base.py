@@ -15,6 +15,9 @@ class ViTVideo(nn.Module):
         else:
             model_args = dict(patch_size=16*num_frames, embed_dim=768, depth=12, num_heads=12)
             model = _create_vision_transformer('vit_base_patch16_224', pretrained=False, **dict(model_args))
+            self.patch_embedding = model.patch_embed
+            self.cls_token = model.cls_token
+            self.positional_encoding = model.pos_embed
             self.transformer = model.blocks
             self.norm = model.norm
         self.head = nn.Linear(pretrained_vit.embed_dim, num_classes)
