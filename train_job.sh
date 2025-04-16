@@ -27,7 +27,7 @@ cd $SLURM_TMPDIR
 git clone git@github.com:srikanth-sfu/Video-FocalNets.git
 cd Video-FocalNets 
 
-timeout 170m source train.sh 
+timeout 170m bash train.sh 
  
 if [ $? -eq 124 ]; then
   echo "The script timed out after ${MAX_HOURS} hour(s). Restarting..."
