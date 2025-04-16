@@ -24,7 +24,7 @@ unzip -qq ARID_v1_5_211015.zip
 mv clips_v1.5 arid
 cd $SLURM_TMPDIR
 
-
+git clone git@github.com:srikanth-sfu/Video-FocalNets.git
 cd Video-FocalNets 
 
 timeout 170m source train.sh 
