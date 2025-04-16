@@ -27,7 +27,7 @@ TRAIN:
   OPTIMIZER:
     NAME: "sgd"
   WARMUP_EPOCHS: 20
-  PRETRAINED_PATH: './pretrained/focalnet_base_srf.pth'
+  PRETRAINED_PATH: '/project/def-mpederso/smuralid/checkpoints/video_focalnet/focalnet_base_srf.pth'
 AUG:
   FRAME_INTERVAL: 4
   FLIP_RATIO: 0.5
