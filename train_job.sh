@@ -17,9 +17,9 @@ unzip -qq focal_new.zip
 module load StdEnv/2020 gcc/9.3.0 opencv/4.5.1 python/3.8.10
 source focal/bin/activate
 mkdir data && cd data
-cp -r /project/def-mpederso/smuralid/datasets/kinetics600.zip .
+#cp -r /project/def-mpederso/smuralid/datasets/kinetics600.zip .
 cp /project/def-mpederso/smuralid/datasets/Daily-DA/ARID_v1_5_211015.zip .
-unzip -qq kinetics600.zip
+#unzip -qq kinetics600.zip
 unzip -qq ARID_v1_5_211015.zip
 mv clips_v1.5 arid
 cd $SLURM_TMPDIR
