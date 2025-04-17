@@ -249,7 +249,6 @@ def update_config(config, args):
     config.TAG = "LR_{}_EP_{}_OPT_{}_FRAMES_{}".format(config.TRAIN.BASE_LR, config.TRAIN.EPOCHS,
                                                        config.TRAIN.OPTIMIZER.NAME, config.DATA.NUM_FRAMES)
     config.OUTPUT = os.path.join(config.OUTPUT, config.DATA.DATASET, config.MODEL.NAME, config.TAG)
-    config.AMP_OPT_LEVEL = "O0"
     config.freeze()
 
 
