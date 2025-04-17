@@ -4,7 +4,7 @@ DATA:
     VAL_FILE: 'video_splits/kinetics600_dailyda_val.csv'
     DATASET: kinetics600
     NUM_FRAMES: 8
-    NUM_CLASSES: 600
+    NUM_CLASSES: 8 
     LABEL_LIST: 'video_splits/dailyda_classnames.txt'
     BATCH_SIZE: 8
 MODEL:
